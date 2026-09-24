@@ -26,15 +26,7 @@ jobs:
         run: |
           $ErrorActionPreference = "Stop"
 
-          Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Rokaizo/CasioEmuMsvc/main/assets/male_avatar_64.png" -OutFile "male_avatar_64.png"
-
-          py -3 -m pip install --disable-pip-version-check pillow
-          @'
-          from PIL import Image
-          img = Image.open("male_avatar_64.png").convert("RGBA")
-          img.save(r"CasioEmuMsvc/icon.ico", format="ICO", sizes=[(64,64),(48,48),(32,32),(16,16)])
-          '@ | Set-Content -Encoding UTF8 convert_icon.py
-          py -3 convert_icon.py
+          Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Rokaizo/CasioEmuMsvc/main/assets/male_app_32.ico" -OutFile "CasioEmuMsvc/icon.ico"
 
           $config = "CasioEmuMsvc/src/Config.hpp"
           $text = Get-Content -Raw $config
