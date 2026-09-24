@@ -1,4 +1,4 @@
-name: Build CasioEmuMsvc with male Discord avatar
+name: Build CasioEmuMsvc with male Discord avatar and Windows GUI
 
 on:
   push:
@@ -21,9 +21,21 @@ jobs:
           ref: stable
           submodules: recursive
 
-      - name: Apply Discord settings
+      - name: Apply customization files
         shell: pwsh
         run: |
+          $ErrorActionPreference = "Stop"
+
+          Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Rokaizo/CasioEmuMsvc/main/assets/male_avatar_64.png" -OutFile "male_avatar_64.png"
+
+          py -3 -m pip install --disable-pip-version-check pillow
+          @'
+from PIL import Image
+img = Image.open("male_avatar_64.png").convert("RGBA")
+img.save(r"CasioEmuMsvc/icon.ico", format="ICO", sizes=[(64,64),(48,48),(32,32),(16,16)])
+'@ | Set-Content -Encoding UTF8 convert_icon.py
+          py -3 convert_icon.py
+
           $config = "CasioEmuMsvc/src/Config.hpp"
           $text = Get-Content -Raw $config
           $text = [regex]::Replace($text, '#define DISCORD_APP_ID\s+"[^"]+"', '#define DISCORD_APP_ID "1552675987047841832"')
@@ -41,6 +53,16 @@ jobs:
           $text = $text.Replace('https://github.com/telecomadm1145/CasioEmuMsvc', 'https://github.com/Rokaizo/CasioEmuMsvc')
           Set-Content -Path $rpc -Value $text -NoNewline
 
+          $cmake = "CasioEmuMsvc/CMakeLists.txt"
+          $text = Get-Content -Raw $cmake
+          $oldLine = '        add_executable($' + '{TARGET_NAME} $' + '{MAIN_SOURCES} $' + '{WIN_RESOURCES})'
+          $newLine = '        add_executable($' + '{TARGET_NAME} WIN32 $' + '{MAIN_SOURCES} $' + '{WIN_RESOURCES})'
+          if (-not $text.Contains($oldLine)) {
+            throw "Expected add_executable line not found in CMakeLists.txt"
+          }
+          $text = $text.Replace($oldLine, $newLine)
+          Set-Content -Path $cmake -Value $text -NoNewline
+
       - name: Configure and build x64
         shell: pwsh
         run: |
@@ -50,8 +72,6 @@ jobs:
       - name: Upload x64 build
         uses: actions/upload-artifact@v4
         with:
-          name: CasioEmuMsvc-Windows-x64-male-avatar
+          name: CasioEmuMsvc-Windows-x64-male-avatar-gui
           path: build-x64\CasioEmuMsvc\Release
           if-no-files-found: error
-
-# Retry trigger: 2026-09-24T14:19:18.561Z
