@@ -45,8 +45,10 @@ namespace DiscordRPC {
             discordPresence.startTimestamp = StartTime;
         }
         discordPresence.details = details_str.c_str();
+        discordPresence.largeImageKey = "discord_avatar_male_512";
+        discordPresence.largeImageText = "CasioEmuMsvc";
         discordPresence.button1Label = "View Repository";
-        discordPresence.button1Url = "https://github.com/telecomadm1145/CasioEmuMsvc";
+        discordPresence.button1Url = "https://github.com/Rokaizo/CasioEmuMsvc";
         Discord_UpdatePresence(&discordPresence);
 #endif
     }
