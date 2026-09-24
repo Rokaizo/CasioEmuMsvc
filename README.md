@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/telecomadm1145/CasioEmuMsvc/main/CasioEmuMsvc/icon.ico" width="96" alt="CasioEmuMsvc Logo"/>
+<img src="https://raw.githubusercontent.com/telecomadm1145/CasioEmuMsvc/stable/CasioEmuMsvc/icon.ico" width="96" alt="CasioEmuMsvc Logo"/>
 
 # CasioEmuMsvc
 
