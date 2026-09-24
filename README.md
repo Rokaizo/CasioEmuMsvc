@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="CasioEmuMsvc/icon.ico" width="96" alt="CasioEmuMsvc Logo"/>
+<img src="https://raw.githubusercontent.com/telecomadm1145/CasioEmuMsvc/main/CasioEmuMsvc/icon.ico" width="96" alt="CasioEmuMsvc Logo"/>
 
 # CasioEmuMsvc
 
@@ -36,15 +36,15 @@
 
 > [!IMPORTANT]
 > macOS Usage
-> 
+>
 > Because the macOS app is built and uses an ad-hoc signature, macOS Gatekeeper will quarantine the app and may display a *"Launch failed"* or *"App is damaged"* error upon first launch.
-> 
+>
 > To bypass this protection, after extracting the file, open your **Terminal** and run the following command to clear the quarantine flag:
 > ```bash
 > xattr -cr /path/to/CasioEmuMsvc.app
 > ```
 > (Replace /path/to/CasioEmuMsvc.app with the actual path to your extracted app. You can type xattr -cr and drag the App into the Terminal window).
-After running this command, you can simply double-click the app to open it normally.
+After running the command, you can simply double-click the app to open it normally.
 
 ## 💬 Community
 
