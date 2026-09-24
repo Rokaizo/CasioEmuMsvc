@@ -87,4 +87,4 @@ public:                       \
 #define SENTRY_BUILD_STATIC 1
 #endif
 
-#define DISCORD_APP_ID "1494244788055179344"
+#define DISCORD_APP_ID "1552675987047841832"
