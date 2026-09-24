@@ -1,0 +1,77 @@
+name: Build CasioEmuMsvc with male Discord avatar
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-windows-x64:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout customization repo
+        uses: actions/checkout@v4
+
+      - name: Clone upstream stable source
+        shell: pwsh
+        run: |
+          git clone --recursive --depth 1 --branch stable https://github.com/telecomadm1145/CasioEmuMsvc.git upstream
+
+      - name: Apply Discord customization
+        shell: pwsh
+        run: |
+          $config = Join-Path $env:GITHUB_WORKSPACE "upstream/CasioEmuMsvc/src/Config.hpp"
+          $text = Get-Content -Raw $config
+          $text = [regex]::Replace($text, '#define DISCORD_APP_ID\s+"[^"]+"', '#define DISCORD_APP_ID "1552675987047841832"')
+          Set-Content -Path $config -Value $text -NoNewline
+
+          $rpc = Join-Path $env:GITHUB_WORKSPACE "upstream/CasioEmuMsvc/src/Ext/DiscordRPC.cpp"
+          $text = Get-Content -Raw $rpc
+
+          if ($text -notmatch 'largeImageKey') {
+            $needle = '        discordPresence.details = details_str.c_str();'
+            $replacement = @'
+        discordPresence.details = details_str.c_str();
+        discordPresence.largeImageKey = "discord_avatar_male_512";
+        discordPresence.largeImageText = "CasioEmuMsvc";
+'@
+            $text = $text.Replace($needle, $replacement.TrimEnd())
+          }
+
+          $text = $text.Replace(
+            'https://github.com/telecomadm1145/CasioEmuMsvc',
+            'https://github.com/Rokaizo/CasioEmuMsvc'
+          )
+
+          Set-Content -Path $rpc -Value $text -NoNewline
+
+      - name: Configure CMake
+        shell: pwsh
+        working-directory: upstream
+        run: cmake -S . -B build -A x64 -DCMAKE_BUILD_TYPE=Release -DBUILD_EXECUTABLE=ON
+
+      - name: Build Release
+        shell: pwsh
+        working-directory: upstream
+        run: cmake --build build --config Release --parallel
+
+      - name: Package Windows build
+        shell: pwsh
+        working-directory: upstream
+        run: |
+          $out = Join-Path $env:GITHUB_WORKSPACE "CasioEmuMsvc-Windows-x64"
+          if (Test-Path $out) { Remove-Item -Recurse -Force $out }
+          New-Item -ItemType Directory -Path $out | Out-Null
+          Copy-Item -Recurse -Force "build/CasioEmuMsvc/Release/*" $out
+          Compress-Archive -Path "$out/*" -DestinationPath "$env:GITHUB_WORKSPACE/CasioEmuMsvc-Windows-x64.zip" -Force
+
+      - name: Upload Windows build
+        uses: actions/upload-artifact@v4
+        with:
+          name: CasioEmuMsvc-Windows-x64-male-avatar
+          path: CasioEmuMsvc-Windows-x64.zip
+          if-no-files-found: error
