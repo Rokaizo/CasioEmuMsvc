@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Rokaizo/CasioEmuMsvc/main/assets/male_avatar_64.png" width="96" alt="CasioEmuMsvc Logo"/>
+<img src="./assets/male_avatar_64.png" width="96" alt="CasioEmuMsvc Logo"/>
 
 # CasioEmuMsvc
 
