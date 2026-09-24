@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./assets/casioemumsvc-male.png" width="96" alt="CasioEmuMsvc Logo"/>
+<img src="./assets/male_avatar_64.png" width="96" alt="CasioEmuMsvc Logo"/>
 
 # CasioEmuMsvc
 
