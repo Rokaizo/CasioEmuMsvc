@@ -53,3 +53,5 @@ jobs:
           name: CasioEmuMsvc-Windows-x64-male-avatar
           path: build-x64\CasioEmuMsvc\Release
           if-no-files-found: error
+
+# Retry trigger: 2026-09-24T14:19:18.561Z
