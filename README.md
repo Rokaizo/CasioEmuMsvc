@@ -1,53 +1,57 @@
 <div align="center">
 
-<img src="./assets/male_avatar_64.png" width="96" alt="CasioEmuMsvc Logo"/>
+<img src="./assets/casioemumsvc-male.jpg" width="96" height="96" alt="Biểu tượng CasioEmuMsvc"/>
 
 # CasioEmuMsvc
 
-**A high-performance emulator and developer toolkit for the nX-U8/100 & nX-U16/100 MCU series.**
-
-[![License](https://img.shields.io/github/license/telecomadm1145/CasioEmuMsvc?style=flat-square)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux%20%7C%20Android-blue?style=flat-square)](docs/README.en.md#-platform-support)
-[![Stars](https://img.shields.io/github/stars/telecomadm1145/CasioEmuMsvc?style=flat-square)](https://github.com/telecomadm1145/CasioEmuMsvc/stargazers)
-[![Discord](https://img.shields.io/discord/NM39VPdJTf?label=Discord&logo=discord&style=flat-square)](https://discord.gg/NM39VPdJTf)
+**Trình mô phỏng và bộ công cụ phát triển dành cho dòng vi điều khiển nX-U8/100 và nX-U16/100.**
 
 </div>
 
 ---
 
-## 🌐 Select Language / 选择语言 / Chọn ngôn ngữ
+## Giới thiệu
 
-| 🇺🇸 English | 🇨🇳 中文 | 🇻🇳 Tiếng Việt |
-|:---:|:---:|:---:|
-| [Read →](docs/README.en.md) | [阅读 →](docs/README.zh-CN.md) | [Đọc →](docs/README.vi.md) |
+CasioEmuMsvc là một dự án tập trung vào việc mô phỏng các dòng vi điều khiển **nX-U8/100** và **nX-U16/100**, đồng thời cung cấp các công cụ hỗ trợ quá trình nghiên cứu, phát triển và kiểm thử.
+
+Dự án hướng tới một môi trường làm việc thuận tiện, kết hợp trình mô phỏng với các công cụ cần thiết để quan sát, phân tích và chỉnh sửa chương trình.
+
+## Tính năng chính
+
+- **Mô phỏng vi điều khiển:** hỗ trợ nX-U8/100 và nX-U16/100.
+- **Bộ công cụ phát triển:** gồm trình gỡ lỗi, trình dịch ngược và trình chỉnh sửa HEX.
+- **Ảnh chụp và trạng thái:** hỗ trợ lưu trạng thái, tạo nhiều nhánh trạng thái và xem trước màn hình.
+- **Hệ thống mở rộng:** hỗ trợ MCP, Python, Cw2tools và các tiện ích mở rộng tùy chỉnh.
+- **Nhiều nền tảng:** có các bản xây dựng cho Windows, macOS, Linux và Android.
+- **Tùy biến:** hỗ trợ quản lý giao diện, bản địa hóa, Discord Rich Presence và kiểm tra cập nhật.
+
+## Nền tảng
+
+Dự án hiện có cấu hình xây dựng cho:
+
+- **Windows** — hỗ trợ xây dựng bằng MSVC.
+- **macOS**
+- **Linux** — sử dụng CMake/Ninja.
+- **Android** — sử dụng Gradle/NDK.
+
+## Lưu ý khi chạy trên macOS
+
+Bản macOS sử dụng chữ ký tạm thời nên Gatekeeper có thể chặn ứng dụng ở lần chạy đầu tiên và hiển thị thông báo như **“Launch failed”** hoặc **“App is damaged”**.
+
+Sau khi giải nén ứng dụng, mở Terminal và chạy:
+
+```bash
+xattr -cr /đường/dẫn/tới/CasioEmuMsvc.app
+```
+
+Có thể gõ `xattr -cr ` trong Terminal rồi kéo tệp ứng dụng vào cửa sổ Terminal để điền đường dẫn tự động. Sau khi thực hiện lệnh, có thể mở ứng dụng như bình thường.
+
+## Cộng đồng và hỗ trợ
+
+- **Discord:** https://discord.gg/NM39VPdJTf
+- **Email:** telecomadm1919@gmail.com
+- **Báo lỗi và đề xuất:** https://github.com/Rokaizo/CasioEmuMsvc/issues
 
 ---
 
-## ✨ At a Glance
-
-- 🖥️ **Full emulation** of nX-U8/100 & nX-U16/100 MCUs
-- 🔬 **Rich developer tools** — debugger, disassembler, hex editor
-- 📸 **Snapshot system** with branching save-states and screen previews
-- 🔌 **Plugin API** — MCP (AI-driven), Python, Cw2tools, and custom plugins
-- 🚀 **Multi-platform** — Windows (MSVC), macOS, Linux (CMake/Ninja), Android (Gradle/NDK)
-- 🎨 **Theme manager**, localization, Discord Rich Presence, and auto-update checker
-
----
-
-> [!IMPORTANT]
-> macOS Usage
->
-> Because the macOS app is built and uses an ad-hoc signature, macOS Gatekeeper will quarantine the app and may display a *"Launch failed"* or *"App is damaged"* error upon first launch.
->
-> To bypass this protection, after extracting the file, open your **Terminal** and run the following command to clear the quarantine flag:
-> ```bash
-> xattr -cr /path/to/CasioEmuMsvc.app
-> ```
-> (Replace /path/to/CasioEmuMsvc.app with the actual path to your extracted app. You can type xattr -cr and drag the App into the Terminal window).
-After running the command, you can simply double-click the app to open it normally.
-
-## 💬 Community
-
-- 💬 **Discord**: [discord.gg/NM39VPdJTf](https://discord.gg/NM39VPdJTf)
-- 📧 **Email**: [telecomadm1919@gmail.com](mailto:telecomadm1919@gmail.com)
-- 🐛 **Issues**: [GitHub Issues](https://github.com/telecomadm1145/CasioEmuMsvc/issues)
+**CasioEmuMsvc — một bộ công cụ dành cho việc mô phỏng, nghiên cứu và phát triển trên nền nX-U8/100 và nX-U16/100.**
