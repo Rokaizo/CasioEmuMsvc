@@ -1,6 +1,6 @@
 <div align="center">
 
-<p align="center">![CasioEmuMsvc](./assets/casioemumsvc-male.jpg)</p>
+![CasioEmuMsvc](./assets/casioemumsvc-male.jpg)
 
 # CasioEmuMsvc
 
