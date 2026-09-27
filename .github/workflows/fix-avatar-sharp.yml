@@ -19,7 +19,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y imagemagick
-          magick assets/casioemumsvc-male.jpg \
+          convert assets/casioemumsvc-male.jpg \
             -filter Lanczos \
             -resize 128x128! \
             -unsharp 0x1+0.8+0.02 \
