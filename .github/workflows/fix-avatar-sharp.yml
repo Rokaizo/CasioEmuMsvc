@@ -1,0 +1,40 @@
+name: Fix README avatar sharpness
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix-avatar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build sharper ICO
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+          magick assets/casioemumsvc-male.jpg \
+            -filter Lanczos \
+            -resize 128x128! \
+            -unsharp 0x1+0.8+0.02 \
+            -define icon:auto-resize=16,32,48,64,96,128 \
+            CasioEmuMsvc/icon.ico
+
+      - name: Commit result and clean temporary files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -rf .github/avatar_parts
+          rm -f .github/workflows/fix-avatar-sharp.yml
+          git add CasioEmuMsvc/icon.ico .github/avatar_parts .github/workflows/fix-avatar-sharp.yml
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Làm nét icon nhân vật nam"
+          git push
