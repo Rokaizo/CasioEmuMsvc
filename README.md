@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./assets/casioemumsvc-male.jpg" width="96" height="96" alt="Biểu tượng CasioEmuMsvc"/>
+![Biểu tượng CasioEmuMsvc](https://raw.githubusercontent.com/Rokaizo/CasioEmuMsvc/main/assets/casioemumsvc-male.jpg)
 
 # CasioEmuMsvc
 
