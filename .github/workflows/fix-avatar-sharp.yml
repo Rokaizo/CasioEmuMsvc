@@ -17,14 +17,19 @@ jobs:
 
       - name: Build sharper ICO
         run: |
-          sudo apt-get update
-          sudo apt-get install -y imagemagick
-          convert assets/casioemumsvc-male.jpg \
-            -filter Lanczos \
-            -resize 128x128! \
-            -unsharp 0x1+0.8+0.02 \
-            -define icon:auto-resize=16,32,48,64,96,128 \
-            CasioEmuMsvc/icon.ico
+          python -m pip install --upgrade pillow
+          python - <<'PY'
+          from PIL import Image, ImageFile, ImageFilter
+          ImageFile.LOAD_TRUNCATED_IMAGES = True
+          im = Image.open("assets/casioemumsvc-male.jpg").convert("RGB")
+          im = im.resize((128, 128), Image.Resampling.LANCZOS)
+          im = im.filter(ImageFilter.UnsharpMask(radius=1.0, percent=115, threshold=2))
+          im.save(
+              "CasioEmuMsvc/icon.ico",
+              format="ICO",
+              sizes=[(16,16),(32,32),(48,48),(64,64),(96,96),(128,128)]
+          )
+          PY
 
       - name: Commit result and clean temporary files
         run: |
