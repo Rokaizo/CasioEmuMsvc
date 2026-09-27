@@ -1,6 +1,6 @@
 <div align="center">
 
-<p align="center"><img src="https://github.com/Rokaizo/CasioEmuMsvc/raw/refs/heads/main/assets/casioemumsvc-male.png" width="96" alt="" /></p>
+<p align="center">![CasioEmuMsvc](./assets/casioemumsvc-male.jpg)</p>
 
 # CasioEmuMsvc
 
