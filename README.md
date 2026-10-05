@@ -49,7 +49,7 @@ Có thể gõ `xattr -cr ` trong Terminal rồi kéo tệp ứng dụng vào c�
 ## 💬 Cộng đồng và hỗ trợ
 
 - 💬 **Discord:** https://discord.gg/NM39VPdJTf
-- 📧 **Email:** telecomadm1919@gmail.com
+- 📧 **Email:** rokaizo2k13@gmail.com
 - 🐛 **Báo lỗi và đề xuất:** https://github.com/Rokaizo/CasioEmuMsvc/issues
 
 ---
